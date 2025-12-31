@@ -1,0 +1,2 @@
+- [ ] Implement manifold projection baseline for PGD finetuning
+- [ ] Compare against SeedLM block manifold

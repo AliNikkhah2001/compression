@@ -1,0 +1,24 @@
+# TODO (Neural Compression Plan)
+
+- [ ] Post-hoc seed-based compression (20% rate, no finetune)
+  - [ ] Block size sweep: 10 vs 20
+  - [ ] Seeds/coefficient counts: 1 seed/coeff vs 3 coeff
+  - [ ] Metrics: perplexity/accuracy drop, reconstruction error
+- [ ] Finetune compressed model
+  - [ ] Vanilla finetuning on full train data
+  - [ ] PGD on seed manifold; sweep projection frequency
+  - [ ] Seed handling: fixed vs re-optimized during finetune
+- [ ] Knowledge distillation with limited data
+  - [ ] KD with 1% / 5% / 10% data
+  - [ ] Compare against full-data finetuning
+- [ ] LoRA compression (NOLA concept)
+  - [ ] Implement random-basis LoRA adapter representation
+  - [ ] Evaluate storage/latency vs standard LoRA and SeedLM
+- [ ] Baseline comparisons
+  - [ ] Low-rank: weighted SVD (ICLR 2022), SVD-LLM (ICLR 2025)
+  - [ ] Quantization: SmoothQuant, AdaRound, Quantization Networks
+  - [ ] Pruning: SparseGPT, Wanda, PLATON (UCB)
+- [ ] Hybrid/ablation experiments
+  - [ ] Sparse + SeedLM hybrid (prune then seed-encode remaining weights)
+  - [ ] Quantization + SeedLM coefficients (rounding-aware search)
+  - [ ] KD vs PGD interactions under extreme compression

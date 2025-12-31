@@ -1,0 +1,2 @@
+- [ ] Re-implement weighted SVD objective
+- [ ] Compare perplexity vs truncation-aware SVD and SeedLM at same compression ratio

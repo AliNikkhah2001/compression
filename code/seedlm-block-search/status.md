@@ -1,0 +1,3 @@
+- [ ] Implement block-wise seed generator + coefficient solver
+- [ ] Add PGD projection and seed re-optimization toggles
+- [ ] Integrate KD loss and data-subsampling

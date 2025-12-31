@@ -1,0 +1,3 @@
+- [ ] Add exact splits (calibration/perplexity eval) and licensing notes
+- [ ] Script downloads for WikiText-2/3, PTB, C4/RedPajama subsets
+- [ ] Create KD subset manifests (1%, 5%, 10%)

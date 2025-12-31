@@ -1,0 +1,2 @@
+- [ ] Implement AdaRound calibration for LLM layers
+- [ ] Compare against SmoothQuant and learnable quantizers

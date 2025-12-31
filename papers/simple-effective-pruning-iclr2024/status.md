@@ -1,0 +1,2 @@
+- [ ] Implement Wanda scoring and one-shot pruning
+- [ ] Evaluate vs SparseGPT and PLATON on shared calibration set

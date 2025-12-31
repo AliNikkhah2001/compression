@@ -1,0 +1,2 @@
+- [ ] Implement truncation-aware SVD + post-update
+- [ ] Benchmark vs weighted SVD and SeedLM on same blocks

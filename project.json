@@ -1,0 +1,5 @@
+{
+  "name": "Neural Compression Lab",
+  "description": "Research workspace for neural network compression across reparameterization, low-rank/SVD, quantization, pruning, and seed-based weight generation.",
+  "homepage": "https://github.com/AliNikkhah2001/compression"
+}

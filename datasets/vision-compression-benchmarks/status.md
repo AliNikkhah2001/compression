@@ -1,0 +1,3 @@
+- [ ] Add download scripts for ImageNet (requires credentials) and CIFAR
+- [ ] Define calibration subsets for PTQ
+- [ ] Add ViT/DeiT fine-tuning configs for compression comparisons

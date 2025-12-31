@@ -1,0 +1,3 @@
+- [ ] Reproduce block-wise seed search on 20% compression, blocks 10/20
+- [ ] Add PGD-on-manifold finetuning with/without seed re-optimization
+- [ ] Evaluate KD at low-data (1/5/10%)

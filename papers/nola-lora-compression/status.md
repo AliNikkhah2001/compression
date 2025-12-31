@@ -1,0 +1,2 @@
+- [ ] Locate/public release or internal notes for NOLA
+- [ ] Prototype random-basis LoRA adapter compression

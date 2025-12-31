@@ -1,0 +1,2 @@
+- [ ] Reproduce learnable quantizer on CIFAR/ImageNet baseline
+- [ ] Adapt to ViT/DeiT and compare against SmoothQuant PTQ

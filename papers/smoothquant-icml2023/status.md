@@ -1,0 +1,2 @@
+- [ ] Calibrate SmoothQuant scales on LLM calibration split
+- [ ] Compare W8A8 and lower-bit hybrids vs seed-based compression
