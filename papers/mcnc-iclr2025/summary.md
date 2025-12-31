@@ -27,3 +27,5 @@
 
 **Use here**
 - PGD projection operator baseline for SeedLM manifold comparisons; could reuse retraction ops for seed-coefficient manifolds.
+
+![MCNC figure](figure1-01.png)

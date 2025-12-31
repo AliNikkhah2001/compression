@@ -23,3 +23,5 @@
 
 **Use here**
 - Pruning baseline vs SparseGPT/Wanda; can precede seed-based encoding on the remaining weights.
+
+![PLATON figure](figure1-01.png)

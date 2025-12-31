@@ -22,3 +22,5 @@
 
 **Use here**
 - Low-rank baseline vs SVD-LLM and SeedLM; possible teacher/init for hybrid methods.
+
+![Weighted SVD figure](figure1-01.png)

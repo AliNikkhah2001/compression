@@ -22,3 +22,5 @@
 
 **Use here**
 - Strong low-rank baseline vs weighted SVD and SeedLM; informs how often to adapt after projection/truncation.
+
+![SVD-LLM figure](figure1-01.png)

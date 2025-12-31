@@ -22,3 +22,5 @@
 
 **Use here**
 - Vision baseline; ideas transferable to ViT/DeiT and to learned coefficient quantization for SeedLM.
+
+![Quantization Networks figure](figure1-1.png)

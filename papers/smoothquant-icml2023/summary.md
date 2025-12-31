@@ -23,3 +23,5 @@
 
 **Use here**
 - PTQ baseline; smoothing can also stabilize activation ranges for seed-reconstructed weights before quantization.
+
+![SmoothQuant figure](figure1-01.png)

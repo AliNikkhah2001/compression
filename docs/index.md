@@ -5,7 +5,7 @@ layout: default
 # Neural Compression Lab
 
 Research workspace for neural network compression across reparameterization, low-rank/SVD, quantization, pruning, and seed-based weight generation.
-_Last updated: 2025-12-31 17:35 UTC_
+_Last updated: 2025-12-31 17:54 UTC_
 
 Project homepage: https://github.com/AliNikkhah2001/compression
 
@@ -87,20 +87,20 @@ Project homepage: https://github.com/AliNikkhah2001/compression
 
 # Up or Down? Adaptive Rounding for Post-Training Quantization (ICML 2020)
 
-**Problem**: Nearest rounding $\\mathrm{round}(x/\\Delta)$ is not task-optimal.
+**Problem**: Nearest rounding $\mathrm{round}(x/\Delta)$ is not task-optimal.
 
 **AdaRound formulation**
-- For weight $w$, learn a rounding offset $\\alpha$ in
-  $$\\tilde w = \\Delta \\cdot \\mathrm{round}\\big(\\tfrac{w}{\\Delta} + \\alpha\\big) - \\Delta \\alpha,$$
-  where $\\alpha \\in [0,1]$ (per-weight or per-block).
+- For weight $w$, learn a rounding offset $\alpha$:
+  $$\tilde w = \Delta \cdot \mathrm{round}\!\left(\tfrac{w}{\Delta} + \alpha\right) - \Delta \alpha,$$
+  where $\alpha \in [0,1]$ (per-weight or per-block).
 - Relax rounding with a sigmoid during optimization:
-  $$\\mathrm{round}_\\tau(z) = z - \\sigma_\\tau(z-\\lfloor z \\rfloor - 0.5) + 0.5,$$
-  temperature $\\tau \\downarrow 0$.
+  $$\mathrm{round}_\tau(z) = z - \sigma_\tau\big(z-\lfloor z \rfloor - 0.5\big) + 0.5,$$
+  with temperature $\tau \downarrow 0$ (smooth $\rightarrow$ hard rounding).
 
 **Optimization**
 - Minimize calibration loss:
-  $$\\min_{\\alpha} \\; \\mathcal{L}_{calib}(Q_\\alpha(W); \\text{data}) + \\lambda \\sum \\mathrm{reg}(\\alpha),$$
-  where $Q_\\alpha$ uses learned rounding; regularizer pulls $\\alpha$ toward integers (0 or 1).
+  $$\min_{\alpha} \; \mathcal{L}_{\text{calib}}\!\left(Q_\alpha(W); \text{data}\right) + \lambda \sum \mathrm{reg}(\alpha),$$
+  where $Q_\alpha$ uses learned rounding; regularizer pulls $\alpha$ toward integers (0 or 1).
 - After convergence, snap to hard rounding with learned offsets.
 
 **Findings (paper)**
@@ -108,6 +108,8 @@ Project homepage: https://github.com/AliNikkhah2001/compression
 
 **Use here**
 - PTQ baseline; same offset idea could tune SeedLM coefficients when quantized.
+
+![Adaptive Rounding figure](figure1-01.png)
 </details>
 
 - [ ] **MCNC: Manifold-Constrained Reparameterization for Neural Compression (ICLR 2025)** (`papers/mcnc-iclr2025`) — tags: manifold, reparameterization, compression, llm
@@ -143,6 +145,8 @@ Project homepage: https://github.com/AliNikkhah2001/compression
 
 **Use here**
 - PGD projection operator baseline for SeedLM manifold comparisons; could reuse retraction ops for seed-coefficient manifolds.
+
+![MCNC figure](figure1-01.png)
 </details>
 
 - [ ] **NOLA: Compressing LoRA Using Linear Combination of Random Bases** (`papers/nola-lora-compression`) — tags: lora, seedlm, adapter, compression
@@ -193,6 +197,8 @@ adapter weights.
 
 **Use here**
 - Pruning baseline vs SparseGPT/Wanda; can precede seed-based encoding on the remaining weights.
+
+![PLATON figure](figure1-01.png)
 </details>
 
 - [ ] **Quantization Networks (CVPR 2019)** (`papers/quantization-networks-cvpr2019`) — tags: quantization, vision, mixed-precision
@@ -223,6 +229,8 @@ adapter weights.
 
 **Use here**
 - Vision baseline; ideas transferable to ViT/DeiT and to learned coefficient quantization for SeedLM.
+
+![Quantization Networks figure](figure1-1.png)
 </details>
 
 - [ ] **SeedLM: Compressing LLM Weights into Seeds of Pseudo-Random Generators** (`papers/seedlm`) — tags: seedlm, reparameterization, post-training, llm
@@ -269,6 +277,8 @@ adapter weights.
 - Seed search cost (discrete optimization); block size $B$ trades search vs approximation quality.
 - PRNG correlations could hurt very small blocks; may need orthogonalization tricks.
 - Coefficient quantization/rounding sensitivity; potential to combine with AdaRound-style optimizers.
+
+![SeedLM figure](figure1-01.png)
 </details>
 
 - [ ] **A Simple and Effective Pruning Approach for Large Language Models (ICLR 2024)** (`papers/simple-effective-pruning-iclr2024`) — tags: pruning, one-shot, llm
@@ -300,6 +310,8 @@ adapter weights.
 
 **Use here**
 - Pruning baseline vs SparseGPT/PLATON; can be combined with SeedLM encoding post-prune.
+
+![Wanda figure](figure1-01.png)
 </details>
 
 - [ ] **SmoothQuant (ICML 2023)** (`papers/smoothquant-icml2023`) — tags: quantization, ptq, llm
@@ -331,6 +343,8 @@ adapter weights.
 
 **Use here**
 - PTQ baseline; smoothing can also stabilize activation ranges for seed-reconstructed weights before quantization.
+
+![SmoothQuant figure](figure1-01.png)
 </details>
 
 - [ ] **SparseGPT: Massive Language Models Can Be Accurately Pruned in One-Shot (ICML 2023)** (`papers/sparsegpt-icml2023`) — tags: pruning, one-shot, hessian, llm
@@ -359,6 +373,8 @@ adapter weights.
 
 **Use here**
 - Strong pruning baseline; candidate precursor to seed-encoding the retained weights (sparse+seed hybrid).
+
+![SparseGPT figure](figure1-01.png)
 </details>
 
 - [ ] **SVD-LLM: Truncation-Aware Singular Value Decomposition for LLM Compression (ICLR 2025)** (`papers/svd-llm-iclr2025`) — tags: low-rank, svd, llm, post-training
@@ -389,6 +405,8 @@ adapter weights.
 
 **Use here**
 - Strong low-rank baseline vs weighted SVD and SeedLM; informs how often to adapt after projection/truncation.
+
+![SVD-LLM figure](figure1-01.png)
 </details>
 
 - [ ] **Language Model Compression with Weighted Low-Rank Factorization (ICLR 2022)** (`papers/weighted-low-rank-iclr2022`) — tags: low-rank, svd, compression, llm
@@ -419,6 +437,8 @@ adapter weights.
 
 **Use here**
 - Low-rank baseline vs SVD-LLM and SeedLM; possible teacher/init for hybrid methods.
+
+![Weighted SVD figure](figure1-01.png)
 </details>
 
 ## Models & Training

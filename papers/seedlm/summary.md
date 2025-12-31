@@ -38,3 +38,5 @@
 - Seed search cost (discrete optimization); block size $B$ trades search vs approximation quality.
 - PRNG correlations could hurt very small blocks; may need orthogonalization tricks.
 - Coefficient quantization/rounding sensitivity; potential to combine with AdaRound-style optimizers.
+
+![SeedLM figure](figure1-01.png)

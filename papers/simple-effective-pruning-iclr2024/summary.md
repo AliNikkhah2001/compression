@@ -23,3 +23,5 @@
 
 **Use here**
 - Pruning baseline vs SparseGPT/PLATON; can be combined with SeedLM encoding post-prune.
+
+![Wanda figure](figure1-01.png)

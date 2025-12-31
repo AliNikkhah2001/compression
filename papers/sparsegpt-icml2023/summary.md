@@ -20,3 +20,5 @@
 
 **Use here**
 - Strong pruning baseline; candidate precursor to seed-encoding the retained weights (sparse+seed hybrid).
+
+![SparseGPT figure](figure1-01.png)
