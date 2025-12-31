@@ -1,13 +1,15 @@
 # PLATON: Pruning Large Transformer Models with UCB of Weight Importance (ICML 2022)
 
-**Idea**: treat weight importance estimation as a multi-armed bandit problem; use Upper Confidence
-Bounds (UCB) to balance exploitation (high estimated importance) and exploration (uncertainty) when
-selecting weights to keep.
+**Problem**: importance scores from mini-batches are noisy; risk pruning crucial weights.
 
-**Highlights**
-- Importance estimates from mini-batch statistics with uncertainty-aware pruning decisions.
-- Works on transformers, outperforming magnitude pruning at same sparsity.
-- Compatible with iterative pruning and light finetuning.
+**Idea**: frame pruning as a bandit; use Upper Confidence Bounds (UCB) to balance estimated importance and uncertainty when deciding what to keep.
+
+**Method**
+- Compute weight importance + uncertainty from batch statistics.
+- UCB-based selection for pruning steps; supports iterative pruning.
+
+**Findings (paper)**
+- Outperforms magnitude pruning at equal sparsity on transformers; benefits from light finetuning.
 
 **Use here**
-- Pruning baseline for comparison with one-shot sparse methods (SparseGPT) and seed-based sparsity.
+- Pruning baseline vs SparseGPT and Wanda; potential precursor to seed-encoding sparse weights.

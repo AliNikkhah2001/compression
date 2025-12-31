@@ -1,13 +1,10 @@
 # A Simple and Effective Pruning Approach for Large Language Models (ICLR 2024)
 
-**Method (Wanda)**: scores weights by element-wise product of weight magnitude and activation
-magnitude (importance = |w| · |a|), enabling fast one-shot pruning without expensive Hessian
-computation or retraining.
+**Method (Wanda)**: score weights by |w|·|a| (magnitude times activation) for fast one-shot pruning without Hessians or retraining.
 
-**Highlights**
-- Works at billion-parameter scale; minimal calibration data.
-- Outperforms magnitude pruning and matches heavier methods while being simple.
+**Key points**
+- Minimal calibration data; scales to billion-parameter LLMs.
+- Outperforms simple magnitude pruning; close to heavier methods at similar sparsity.
 
 **Use here**
-- Baseline sparse method to compare with SparseGPT and PLATON; potential initialization before seed
-compression of sparse weights.
+- Pruning baseline vs SparseGPT and PLATON; can be combined with seed-based encoding post-prune.

@@ -96,6 +96,7 @@ def collect_entries(base: Path) -> list[dict]:
                 "snippet": snippet,
                 "tags": parse_tags(folder / "tags.md"),
                 "status": load_status(folder, status),
+                "summary_path": folder / "summary.md",
             }
         )
     return entries
@@ -121,11 +122,19 @@ def render_entry_lines(entries: list[dict], base_slug: str, empty_hint: str) -> 
             tags = ", ".join(entry["tags"]) if entry["tags"] else "no tags"
             status = entry["status"] or "[ ]"
             lines.append(f"- {status} **{entry['title']}** (`{base_slug}/{entry['slug']}`) — tags: {tags}")
-            if entry["snippet"]:
+            summary_path: Path = entry.get("summary_path")  # type: ignore
+            full_summary = summary_path.read_text() if summary_path and summary_path.exists() else ""
+            if entry["snippet"] and not full_summary:
                 lines.append(f"  - {entry['snippet']}")
+            if full_summary:
+                lines.append("<details>")
+                lines.append("<summary>Show details</summary>")
+                lines.append("")
+                lines.extend(full_summary.splitlines())
+                lines.append("</details>")
+            lines.append("")
     else:
         lines.append(f"- {empty_hint}")
-    lines.append("")
     return lines
 
 

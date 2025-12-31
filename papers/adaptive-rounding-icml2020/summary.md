@@ -1,14 +1,15 @@
 # Up or Down? Adaptive Rounding for Post-Training Quantization (ICML 2020)
 
-**Idea**: learn per-weight rounding offsets (AdaRound) to minimize task loss using a small unlabeled
-calibration set. Produces better PTQ than nearest-neighbor rounding.
+**Problem**: nearest-neighbor rounding is suboptimal for task loss.
 
-**Mechanism**
-- Optimize a continuous relaxation of rounding with an $L_2$ regularizer toward integer points.
-- After optimization, snap to discrete values for deployment.
+**Idea**: learn per-weight rounding offsets (AdaRound) using a small unlabeled calibration set to minimize task loss, then snap to integers.
 
-**Results**
-- Improves PTQ accuracy across CNNs and transformers without full finetuning.
+**Method**
+- Continuous relaxation of rounding with regularization toward integers.
+- Optimize offsets on calibration data; finalize with hard rounding.
+
+**Findings (paper)**
+- Improves PTQ accuracy across CNNs/transformers without full finetuning.
 
 **Use here**
-- PTQ baseline and potential component in seed-based reconstruction (optimize rounding of coefficients).
+- PTQ baseline; offsets could be applied to SeedLM coefficients.

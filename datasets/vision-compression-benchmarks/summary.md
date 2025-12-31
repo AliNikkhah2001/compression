@@ -1,6 +1,12 @@
 # Vision Compression Benchmarks
-[x] Datasets for vision compression baselines.
+[x] Datasets for vision-side compression baselines (quantization, pruning, low-rank, SeedLM-for-ViT).
 
-Use ImageNet-1k for full-scale tests, CIFAR-10/100 for rapid iterations, and COCO keypoints/detection
-when evaluating transformer backbones (e.g., ViT compression). Include calibration subsets for
-post-training quantization and sparse benchmarks mirroring Quantization Networks (CVPR 2019).
+**Included targets**
+- **ImageNet-1k** (classification; full-scale; external download credentials required).
+- **CIFAR-10/100** (fast iteration for QAT/PTQ, pruning, low-rank).
+- **COCO keypoints/detection** when testing ViT/DeiT backbones and structured sparsity.
+- **Calibration subsets** for PTQ (e.g., 512–2048 images).
+
+**Notes**
+- No raw data in git; provide scripts/manifests and document expected directory layout.
+- Useful for transferring lessons from Quantization Networks (CVPR 2019) to ViT.

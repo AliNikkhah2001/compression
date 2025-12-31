@@ -1,16 +1,16 @@
 # SmoothQuant (ICML 2023)
 
-**Idea**: make activations easier to quantize by smoothing outliers. Moves part of activation scale
-into weights offline so that post-training quantization can use W8A8 without accuracy loss.
+**Problem**: activation outliers make LLM activations hard to quantize; naive PTQ hurts accuracy.
 
-**Mechanism**
-- For each channel, choose scaling factor $s$ and transform $(W, A)$ to $(W / s, s \cdot A)$ prior to
-quantization.
+**Idea**: offline smooth activations by shifting per-channel scale into weights so activations become easier to quantize (enabling W8A8 PTQ).
+
+**Method**
+- Choose scaling factor per channel; transform $(W, A)$ to $(W / s, s \cdot A)$ before quantization.
 - Calibrate scales on a small dataset; quantize weights/activations afterward.
 
-**Results**
-- Enables training-free W8A8 on LLMs (OPT/BLOOM etc.) with minimal perplexity increase.
-- Hardware-friendly (no dynamic scaling during inference).
+**Findings (paper)**
+- Training-free W8A8 on OPT/BLOOM with minimal perplexity increase.
+- Hardware-friendly (no dynamic scaling at inference).
 
 **Use here**
-- PTQ baseline for our models; informs activation smoothing even for seed-based reconstructions.
+- PTQ baseline; activation smoothing potentially helpful for seed-reconstructed weights too.

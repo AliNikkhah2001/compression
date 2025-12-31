@@ -1,14 +1,16 @@
 # Language Model Compression with Weighted Low-Rank Factorization (ICLR 2022)
 
-**Idea**: improve SVD-based compression by weighting reconstruction toward task-critical directions
-instead of uniform Frobenius error. The method adds importance weights (from sensitivity metrics) into
-the low-rank factorization objective so that singular values aligned with important parameters are
-kept.
+**Problem**: vanilla SVD minimizes uniform Frobenius error, ignoring task sensitivity.
 
-**Highlights**
-- Task-aware weighting bridges the gap between naive SVD and accuracy retention.
-- Applicable to transformer matrices (attention/FFN) with minimal code changes.
-- Evaluated on language modeling perplexity; yields better accuracy at the same rank than vanilla SVD.
+**Idea**: introduce importance weights into the low-rank objective so reconstruction favors task-critical directions.
+
+**Method**
+- Compute sensitivity/importance per weight (e.g., gradient/Hessian proxies) to weight reconstruction loss.
+- Perform weighted SVD/truncated factorization respecting those weights.
+
+**Findings (paper)**
+- Better perplexity/accuracy at same rank than vanilla SVD on transformer layers.
+- Minimal code change relative to SVD baselines.
 
 **Use here**
-- Baseline for low-rank vs seed-based compression; can serve as KD teacher or initialization.
+- Low-rank baseline vs SVD-LLM and SeedLM; potential KD teacher or init.
