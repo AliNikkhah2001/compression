@@ -1,17 +1,29 @@
 # MCNC: Manifold-Constrained Reparameterization for Neural Compression (ICLR 2025)
 
-**Problem**: maintain structure while compressing massive models (e.g., Llama 3.1 405B) without losing accuracy.
+**Problem**: Compress massive transformers while keeping optimization stable by enforcing geometric structure on compressed parameters.
 
-**Idea**: encode each weight block as a latent point on a manifold (e.g., Stiefel/Grassmann), decode to weights, and constrain optimization to the manifold.
+**Parameterization**
+- Each weight block $W \\in \\mathbb{R}^{m\\times n}$ is mapped from a latent $Z$ that lies on a manifold (e.g., Stiefel manifold of orthonormal columns, Grassmann).
+- Decoder $f_\\theta$ reconstructs weights: $\\hat W = f_\\theta(Z)$ with constraints $Z \\in \\mathcal{M}$.
 
-**Method**
-- Manifold-aware reparameterization: latent -> decoder -> weight block.
-- Projection operators enforce constraints during updates (PGD-friendly).
-- Supports both storage compression and parameter-efficient finetuning.
+**Objective**
+- Reconstruction/compression loss:
+  $$\\min_{Z \\in \\mathcal{M},\\,\\theta} \\; \\|W - f_\\theta(Z)\\|_F^2 + \\lambda\\,\\mathcal{R}(Z,\\theta),$$
+  where $\\mathcal{R}$ may encourage low-rank or sparsity in the decoded weights.
+- During finetuning, task loss $\\mathcal{L}_{task}(f_\\theta(Z))$ replaces reconstruction.
+
+**Manifold optimization**
+- Use Riemannian gradient steps on $Z$ with retraction $\\mathrm{Retr}_Z$:
+  $$Z \\leftarrow \\mathrm{Retr}_Z(-\\eta \\, \\mathrm{grad}_Z \\mathcal{L}).$$
+- Projection keeps $Z$ on $\\mathcal{M}$ (PGD-compatible), improving stability over unconstrained updates.
+
+**Key effects**
+- Implicit regularization: orthogonality/normalization in $Z$ controls Lipschitzness of $\\hat W$.
+- Compression: storage is latent $Z$ (low-dim) + decoder parameters (shared).
 
 **Findings (paper)**
-- Reduces storage while preserving accuracy on large models.
-- More stable finetuning compared to unconstrained low-rank baselines.
+- Storage reduction on large Llama variants with minimal accuracy loss.
+- More stable finetuning than unconstrained low-rank baselines.
 
 **Use here**
-- Baseline projection operator for PGD-on-manifold; comparator to SeedLM manifold.
+- PGD projection operator baseline for SeedLM manifold comparisons; could reuse retraction ops for seed-coefficient manifolds.
