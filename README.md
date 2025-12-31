@@ -1,7 +1,7 @@
 # Neural Compression Lab
 
 Research workspace for neural network compression across reparameterization, low-rank/SVD, quantization, pruning, and seed-based weight generation.
-_Last updated: 2025-12-31 17:54 UTC_
+_Last updated: 2025-12-31 17:55 UTC_
 
 Project homepage: https://github.com/AliNikkhah2001/compression
 
