@@ -1,7 +1,7 @@
 # Neural Compression Lab
 
 Research workspace for neural network compression across reparameterization, low-rank/SVD, quantization, pruning, and seed-based weight generation.
-_Last updated: 2025-12-31 17:55 UTC_
+_Last updated: 2025-12-31 18:06 UTC_
 
 Project homepage: https://github.com/AliNikkhah2001/compression
 
@@ -37,6 +37,18 @@ Project homepage: https://github.com/AliNikkhah2001/compression
 - Post-hoc evaluation (no finetune) on LLM perplexity and vision accuracy.
 - PGD-on-manifold finetuning, sweeping projection frequency; compare fixed vs re-optimized seeds.
 - KD distillation at 1/5/10% data; measure recovery vs full-data finetune.
+</details>
+
+- [ ] **SeedLM Simulation (reference repo)** (`code/seedlm-sim`) — tags: seedlm, reference, prng
+<details>
+<summary>Show details</summary>
+
+# SeedLM Simulation (reference repo)
+[x] Pointer to upstream SeedLM simulation code for weight-generation experiments.
+
+Upstream: https://github.com/alexander-camuto/seedlm-sim (public). Contains PRNG-based weight
+reconstruction prototypes that can guide our block search and coefficient solvers. Keep this folder
+as a pointer; clone the repo into a separate workspace or add as a submodule if we need direct code.
 </details>
 
 ## Datasets
@@ -438,7 +450,7 @@ adapter weights.
 </details>
 
 ## Models & Training
-- Document experiment configs and link to checkpoints or releases.
+- Experiments (training/experiments.md)
 
 ## Evaluation
 - Add benchmark summaries, result tables, or notebooks here.

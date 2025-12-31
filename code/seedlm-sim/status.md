@@ -1,0 +1,3 @@
+- [ ] Clone or add as submodule when ready to reuse code
+- [ ] Port generator/coefficient solver to our block-search pipeline
+- [ ] Evaluate compatibility with PGD/KD experiments
